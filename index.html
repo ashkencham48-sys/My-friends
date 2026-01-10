@@ -1,0 +1,306 @@
+<!doctype html>
+<html>
+    <head> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+        <title>My friends </title>
+    </head> 
+    <body> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepak & Friends | Motivational Journey</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- RESET & BASIC SETUP --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif; /* English Font */
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364); /* Deep Ocean Theme */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            perspective: 1000px;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 2.5rem;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .subtitle {
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            opacity: 0.8;
+            font-family: 'Noto Sans Oriya', sans-serif;
+        }
+
+        /* --- CONTAINER FOR CARDS --- */
+        .squad-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* --- 3D CARD SETUP --- */
+        .card {
+            background-color: transparent;
+            width: 260px;
+            height: 420px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-radius: 20px;
+        }
+
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* --- FRONT AND BACK FACES --- */
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* --- FRONT STYLING --- */
+        .card-front {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.05);
+        }
+
+        .card-front img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover .card-front img {
+            transform: scale(1.1) rotate(5deg);
+            border-color: #FFD700; /* Gold Border on hover */
+        }
+
+        .name-tag {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .role-tag {
+            font-size: 0.9rem;
+            color: #FFD700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .click-hint {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: #ccc;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* --- BACK STYLING (ODIA CONTENT) --- */
+        .card-back {
+            background: #111;
+            color: white;
+            transform: rotateY(180deg);
+            padding: 25px;
+            text-align: center;
+            font-family: 'Noto Sans Oriya', sans-serif; /* Odia Font applied here */
+        }
+
+        /* Unique Gradients for each friend */
+        .deepak-bg { background: linear-gradient(135deg, #FF416C, #FF4B2B); }
+        .chandon-bg { background: linear-gradient(135deg, #11998e, #38ef7d); }
+        .bikram-bg { background: linear-gradient(135deg, #F2994A, #F2C94C); }
+        .subrat-bg { background: linear-gradient(135deg, #8E2DE2, #4A00E0); }
+
+        .quote-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            opacity: 0.5;
+        }
+
+        .odia-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .odia-text {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes pulse {
+            0% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0.5; transform: scale(1); }
+        }
+
+        /* Float animation staggered */
+        .card { animation: float 6s ease-in-out infinite; }
+        .card:nth-child(1) { animation-delay: 0s; }
+        .card:nth-child(2) { animation-delay: 1.5s; }
+        .card:nth-child(3) { animation-delay: 3s; }
+        .card:nth-child(4) { animation-delay: 4.5s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Team Success</h1>
+    <div class="subtitle">Click on our photos to see our story</div>
+
+    <div class="squad-container">
+
+        <div class="card" onclick="flipCard(this)">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="deepak.jpg" alt="Deepak">
+                    <div class="name-tag">Deepak</div>
+                    <div class="role-tag">The Leader</div>
+                    <div class="click-hint">Tap to flip</div>
+                </div>
+                <div class="card-back deepak-bg">
+                    <div class="quote-icon">❝</div>
+                    <div class="odia-title">ବିଫଳତା ହିଁ ସଫଳତାର ଚାବିକାଠି</div>
+                    <p class="odia-text">
+                        "ମନେରଖ, ସୂର୍ଯ୍ୟ ବୁଡ଼ିବା ପରେ ହିଁ ପୁଣି ଉଦୟ ହୁଏ। ଯଦି ତୁମେ ଜୀବନରେ କିଛି ବଡ଼ କରିବାକୁ ଚାହୁଁଛ, ତେବେ ହାର ମାନିବା ଶିଖ ନାହିଁ। ନିଜ ଲକ୍ଷ୍ୟ ପଥରେ ଆଗେଇ ଚାଲ, ସଫଳତା ନିଶ୍ଚୟ ମିଳିବ।"
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" onclick="flipCard(this)">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="chandon.jpg" alt="Chandon">
+                    <div class="name-tag">Chandon</div>
+                    <div class="role-tag">The Creative</div>
+                    <div class="click-hint">Tap to flip</div>
+                </div>
+                <div class="card-back chandon-bg">
+                    <div class="quote-icon">❝</div>
+                    <div class="odia-title">ନିଜ ଉପରେ ବିଶ୍ୱାସ</div>
+                    <p class="odia-text">
+                        "ଦୁନିଆ କ’ଣ ଭାବୁଛି ସେଥିରେ କିଛି ଫରକ ପଡେନି। ତୁମେ ନିଜ ବିଷୟରେ କ’ଣ ଭାବୁଛ, ତାହା ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ। ନିଜର ଆତ୍ମବିଶ୍ୱାସ ହେଉଛି ସବୁଠାରୁ ବଡ ଶକ୍ତି। ସର୍ବଦା ହସୁଥାଅ ଏବଂ ଆଗକୁ ବଢ।"
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" onclick="flipCard(this)">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="bikram.jpg" alt="Bikram">
+                    <div class="name-tag">Bikram</div>
+                    <div class="role-tag">The Fighter</div>
+                    <div class="click-hint">Tap to flip</div>
+                </div>
+                <div class="card-back bikram-bg">
+                    <div class="quote-icon">❝</div>
+                    <div class="odia-title">କଠିନ ପରିଶ୍ରମ</div>
+                    <p class="odia-text">
+                        "କଷ୍ଟ ନକଲେ କୃଷ୍ଣ ମିଳେ ନାହିଁ। ସ୍ୱପ୍ନ ଦେଖିବା ସହଜ, କିନ୍ତୁ ତାକୁ ପୂରଣ କରିବା ପାଇଁ ଝାଳ ବୁହାଇବାକୁ ପଡେ। ଆଜିର ପରିଶ୍ରମ ଆସନ୍ତାକାଲିର ସୁନ୍ଦର ଭବିଷ୍ୟତ ଗଢିବ।"
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" onclick="flipCard(this)">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="subrat.jpg" alt="Subrat">
+                    <div class="name-tag">Subrat</div>
+                    <div class="role-tag">The Visionary</div>
+                    <div class="click-hint">Tap to flip</div>
+                </div>
+                <div class="card-back subrat-bg">
+                    <div class="quote-icon">❝</div>
+                    <div class="odia-title">ସମୟର ମୂଲ୍ୟ</div>
+                    <p class="odia-text">
+                        "ସମୟ କାହା ପାଇଁ ଅପେକ୍ଷା କରେନାହିଁ। ପ୍ରତିଟି ମୁହୂର୍ତ୍ତକୁ ସଠିକ ଭାବରେ ବ୍ୟବହାର କର। ଜୀବନ ଗୋଟିଏ ସୁଯୋଗ, ଏହାକୁ ବ୍ୟର୍ଥ ହେବାକୁ ଦିଅ ନାହିଁ। କିଛି କରି ଦେଖାଅ।"
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function flipCard(card) {
+            // Flips the card when clicked
+            card.classList.toggle('flipped');
+        }
+    </script>
+
+</body>
+</html>
+        <h1>My friends </h1>
+        <div>
+            D👀ee⚡pa😎k
+        </div>  
+    </body>
+</html>
